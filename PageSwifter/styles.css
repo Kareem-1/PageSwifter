@@ -1,0 +1,501 @@
+/* 
+  ============================================================================
+  FANCY STYLES FOR PAGE SWIFTER
+  ============================================================================
+  
+  In this version:
+  - We use bold gradients for backgrounds (hero, footer).
+  - We add glassmorphism-like cards for Services and Portfolio.
+  - We introduce subtle animations and transitions.
+  - We maintain responsiveness.
+  - We keep some color synergy but go bolder on styles.
+  - About section is simplified and slightly wider.
+  ============================================================================
+*/
+
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* 
+    ============================================================================
+    Color Palette & Variables
+    ============================================================================
+    You can change these to any bold/fancy colors you like.
+  */
+  :root {
+    --primary-gradient: linear-gradient(135deg, #784BA0 0%, #2B86C5 100%);
+    --accent-color: #FFC107;
+    --primary-color: #2B86C5; /* used for elements that need a solid color */
+    --secondary-color: #784BA0;
+    --background-color: #F8F9FC;
+    --text-color: #ffffff; /* We'll use white text on darker backgrounds */
+    --heading-color: #2B2B2B; /* For headings on lighter areas */
+    --body-color: #444444;     /* For paragraphs on lighter areas */
+    --card-bg: rgba(255, 255, 255, 0.15);
+    --card-border: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* 
+    ============================================================================
+    Base Typography & Body
+    ============================================================================
+  */
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--body-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+  
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    margin-bottom: 0.5em;
+  }
+  
+  p {
+    margin-bottom: 1em;
+  }
+  
+  /* Links */
+  a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    transition: color 0.3s ease, opacity 0.3s ease;
+  }
+  
+  a:hover {
+    color: var(--accent-color);
+    opacity: 0.8;
+  }
+  
+  /* 
+    ============================================================================
+    Navigation Styles
+    ============================================================================
+  */
+  .navbar {
+    backdrop-filter: blur(10px);
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  
+  .navbar-logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .navbar-links li a {
+    font-weight: 600;
+    color: var(--heading-color);
+  }
+  
+  .navbar-links li a:hover {
+    color: var(--accent-color);
+  }
+  
+  /* 
+    ============================================================================
+    Hero Section
+    ============================================================================
+    - Bold gradient background
+    - Glow or sparkle animations
+    - Fancy button
+  */
+  .hero-section {
+    background: var(--primary-gradient);
+    color: var(--text-color);
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden; /* So we can place decorative animations */
+  }
+  
+  /* Optional subtle glow effects (just for fun) */
+  .hero-section::before,
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    animation: glow 6s infinite ease-in-out alternate;
+    z-index: 1;
+  }
+  .hero-section::before {
+    top: -100px;
+    left: -100px;
+  }
+  .hero-section::after {
+    bottom: -100px;
+    right: -100px;
+    animation-delay: 3s;
+  }
+  
+  @keyframes glow {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.5);
+    }
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2; /* Sit above glow layers */
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  
+  .hero-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+  }
+  
+  .cta-button {
+    background-color: var(--accent-color);
+    color: #333;
+    padding: 0.85rem 1.8rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3);
+  }
+  
+  .cta-button:hover {
+    background-color: #e0ab07;
+    transform: translateY(-3px);
+  }
+  
+  /* 
+    ============================================================================
+    Services Section
+    ============================================================================
+    - Subtle pattern background
+    - Cards with glassmorphism effect
+  */
+  .services-section {
+    background-color: var(--background-color);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .services-section::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    background: url('data:image/svg+xml,%3Csvg width="400" height="400" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cg stroke="%23DDDDDD" stroke-width="1"%3E%3Cpath d="M0.5 80.5H800.5M0.5 160.5H800.5M0.5 240.5H800.5M0.5 320.5H800.5M0.5 400.5H800.5M0.5 480.5H800.5M0.5 560.5H800.5M0.5 640.5H800.5M0.5 720.5H800.5M80.5 0.5V800.5M160.5 0.5V800.5M240.5 0.5V800.5M320.5 0.5V800.5M400.5 0.5V800.5M480.5 0.5V800.5M560.5 0.5V800.5M640.5 0.5V800.5M720.5 0.5V800.5"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') center/40% repeat;
+    opacity: 0.06;
+    z-index: 1;
+  }
+  
+  .services-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .service-box {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    width: 300px;
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  
+  .service-box img {
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+  
+  .service-box h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .service-box p {
+    color: var(--body-color);
+  }
+  
+  .service-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  }
+  
+  /* 
+    ============================================================================
+    Portfolio Section
+    ============================================================================
+  */
+  .portfolio-section {
+    background: linear-gradient(130deg, #d7d2cc 0%, #304352 100%);
+    color: var(--text-color);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .portfolio-section h2 {
+    margin-bottom: 2rem;
+    color: #fff;
+  }
+  
+  .portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .portfolio-item {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  
+  .portfolio-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  }
+  
+  .portfolio-item img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .portfolio-item p {
+    color: #f8f9fa;
+  }
+  
+  /* 
+    ============================================================================
+    About Us Section
+    ============================================================================
+    - Simpler, slightly wider to be consistent with rest of the page
+  */
+  .about-section {
+    background-color: var(--background-color);
+    padding: 4rem 2rem;
+    max-width: 1000px; /* Occupies more width than before */
+    margin: 0 auto;
+  }
+  
+  .about-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--heading-color);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  
+  .about-section h3 {
+    margin-top: 1.5rem;
+    color: var(--heading-color);
+    font-weight: 600;
+  }
+  
+  .about-section p,
+  .about-section ul {
+    color: var(--body-color);
+    margin-bottom: 1rem;
+  }
+  
+  .about-section ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* 
+    ============================================================================
+    Contact Section
+    ============================================================================
+  */
+  .contact-section {
+    background-color: var(--background-color);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  
+  .contact-section h2 {
+    margin-bottom: 2rem;
+    color: var(--heading-color);
+  }
+  
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--heading-color);
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 5px rgba(120, 75, 160, 0.2);
+  }
+  
+  /* Primary button for form submission */
+  .primary-button {
+    background: var(--secondary-color);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 6px 20px rgba(120, 75, 160, 0.2);
+  }
+  
+  .primary-button:hover {
+    background-color: #5c3b8f;
+    transform: translateY(-3px);
+  }
+  
+  /* 
+    ============================================================================
+    Footer Section
+    ============================================================================
+  */
+  .footer-section {
+    background: linear-gradient(130deg, #2B86C5 0%, #784BA0 100%);
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+  }
+  
+  .footer-section a {
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+  
+  .footer-section a:hover {
+    opacity: 0.8;
+  }
+  
+  /* 
+    ============================================================================
+    Responsive Media Queries
+    ============================================================================
+  */
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: none;
+    }
+    
+    .hero-section h1 {
+      font-size: 2.25rem;
+    }
+  
+    .services-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .service-box {
+      width: 100%;
+      max-width: 400px;
+    }
+  
+    .portfolio-container {
+      grid-template-columns: 1fr;
+    }
+  
+    /* Make sure the about-section also adjusts on smaller screens */
+    .about-section {
+      max-width: 90%; /* Let it shrink on tablets for better spacing */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-section h1 {
+      font-size: 1.75rem;
+    }
+    
+    .hero-section p {
+      font-size: 1rem;
+    }
+  
+    .cta-button {
+      padding: 0.6rem 1.2rem;
+    }
+  
+    /* Additional tweak if needed for the about-section on mobile */
+    .about-section {
+      max-width: 95%;
+    }
+  }
+  
